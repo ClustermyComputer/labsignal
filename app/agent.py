@@ -18,6 +18,7 @@ import google.auth
 from google.adk.agents import Agent
 from google.adk.apps import App
 from google.adk.models import Gemini
+from google.adk.tools import google_search
 from google.genai import types
 
 _, project_id = google.auth.default()
@@ -165,7 +166,7 @@ root_agent = Agent(
         retry_options=types.HttpRetryOptions(attempts=3),
     ),
     instruction=LABSIGNAL_PROMPT,
-    tools=[get_patient_confounders, get_sample_chain_risk, get_instrument_qc_history],
+    tools=[get_patient_confounders, get_sample_chain_risk, get_instrument_qc_history, google_search],
 )
 
 app = App(
